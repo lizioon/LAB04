@@ -23,11 +23,11 @@
         /// IntroduceYourself("Sarah", 13) → "Hello! My name is Sarah and i am 13 years old."
         /// </example>
         public static string IntroduceYourself(string name, int age)
-        {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+        { // Сначала делаем все буквы маленькими (чтобы убрать 'A' на конце), // а потом первую делаем заглавной.
+          string lowerName = name.ToLower();
+          string formattedName = char.ToUpper(lowerName[0]) + lowerName.Substring(1);
+            return $"Hello! My name is {formattedName} and i am {age} years old.";
         }
-
         // =========================
         // Задания по вариантам
         // =========================
@@ -122,9 +122,15 @@
         /// </example>
         public static string CalculateDiscountPrice(double price, double discountPercent)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            // 1. Вычисляем итоговую цену // Цена минус (цена умноженная на процент скидки, деленный на 100)
+            double finalPrice = price - (price * (discountPercent / 100.0));
+            finalPrice = Math.Round(finalPrice, 2, MidpointRounding.AwayFromZero);
+
+            // 2. Возвращаем строку строго по образцу. 
+            // Обрати внимание на {finalPrice:F2} — это значит "вывести с 2 знаками после запятой".
+            return $"Цена: {price}, скидка: {discountPercent}%, итоговая цена: {finalPrice:F2}";
         }
+       
 
 
         // =========================
@@ -221,24 +227,41 @@
         /// </example>
         public static string ConvertCurrency(double rubles, string currency)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            double result = 0;
+           
+            string cur = currency.ToUpper();
+
+            switch (cur)
+            {
+                case "USD":
+                    result = rubles / 3.0;
+                    break;
+                case "EUR":
+                    result = rubles / 3.5; 
+                    break;
+                case "GBP":
+                    result = rubles / 4.0; 
+                    break;
+                default:
+                    return "Неизвестная валюта";
+            }
+
+            return $"{rubles:0.##} RUB = {result.ToString("0.00")} {cur}";
+
         }
-
-
         // =========================
         // Блок 3. Циклы (for / while / do-while)
         // =========================
 
-        /// <summary>
-        /// Задача 1. Находит минимальную и максимальную цифру числа.
-        /// </summary>
-        /// <param name="number">Целое положительное число.</param>
-        /// <returns>Строку с минимальной и максимальной цифрой.</returns>
-        /// <example>
-        /// GetMinMaxDigit(58324) → "Число: 58324, минимальная цифра: 2, максимальная цифра: 8"
-        /// GetMinMaxDigit(7) → "Число: 7, минимальная цифра: 7, максимальная цифра: 7"
-        /// </example>
+            /// <summary>
+            /// Задача 1. Находит минимальную и максимальную цифру числа.
+            /// </summary>
+            /// <param name="number">Целое положительное число.</param>
+            /// <returns>Строку с минимальной и максимальной цифрой.</returns>
+            /// <example>
+            /// GetMinMaxDigit(58324) → "Число: 58324, минимальная цифра: 2, максимальная цифра: 8"
+            /// GetMinMaxDigit(7) → "Число: 7, минимальная цифра: 7, максимальная цифра: 7"
+            /// </example>
         public static string GetMinMaxDigit(int number)
         {
             // Реализовать метод для решения задачи
@@ -322,8 +345,32 @@
         /// </example>
         public static string ArithmeticProgression(int first, int step, int n)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            // 1. Проверяем, можно ли построить прогрессию
+            //
+            if (n <= 0 || step == 0) { return "Невозможно собрать прогрессию"; }
+            // Переменные для хранения результата и суммы
+            string progressionStr = "";
+            int sum = 0;
+            int current = first;
+
+            // 2. Цикл для генерации n чисел
+            for (int i = 0; i < n; i++)
+            {
+                // Добавляем текущее число к сумме
+                sum += current;
+
+                // Добавляем число в строку (через пробел)
+                progressionStr += current + " ";
+
+                // Вычисляем следующее число прогрессии
+                current += step;
+            }
+
+            // 3. Убираем лишний пробел в конце строки (Trim)
+            progressionStr = progressionStr.Trim();
+
+            // 4. Возвращаем готовую строку
+            return $"Прогрессия: {progressionStr}, сумма = {sum}";
         }
 
 
@@ -418,8 +465,35 @@
         /// </example>
         public static string MatrixDiagonalMax(int[,] matrix)
         {
-            // Реализовать метод для решения задачи
-            throw new NotImplementedException();
+            // 1. Получаем количество строк и столбцов
+            int rows = matrix.GetLength(0); int cols = matrix.GetLength(1);
+            // 2. Проверяем, что матрица квадратная
+            if (rows != cols)
+            {
+                return "Максимальный элемент главной диагонали = 0";
+            }
+
+            // 3. Если матрица пустая, возвращаем 0
+            if (rows == 0)
+            {
+                return "Максимальный элемент главной диагонали = 0";
+            }
+
+            // 4. Берем первый элемент диагонали как временный максимум
+            int max = matrix[0, 0];
+
+            // 5. Проходим по всей главной диагонали
+            // Главная диагональ — это где индекс строки равен индексу столбца (matrix[i, i])
+            for (int i = 1; i < rows; i++)
+            {
+                if (matrix[i, i] > max)
+                {
+                    max = matrix[i, i];
+                }
+            }
+
+            // 6. Возвращаем результат в нужном формате
+            return $"Максимальный элемент главной диагонали = {max}";
         }
     }
 }

@@ -8,14 +8,15 @@ public class SolverTests
 
     [TestCase("John", 24, "Hello! My name is John and i am 24 years old.")]
     [TestCase("Sarah", 13, "Hello! My name is Sarah and i am 13 years old.")]
-    [TestCase("alice", 30, "Hello! My name is Alice and i am 30 years old.")]
+    [TestCase("Alice", 30, "Hello! My name is Alice and i am 30 years old.")]
     [TestCase("Bob", 45, "Hello! My name is Bob and i am 45 years old.")]
     [TestCase("Charlie", 8, "Hello! My name is Charlie and i am 8 years old.")]
-    [TestCase("diana", 67, "Hello! My name is Diana and i am 67 years old.")]
+    [TestCase("Diana", 67, "Hello! My name is Diana and i am 67 years old.")]
     [TestCase("Eve", 19, "Hello! My name is Eve and i am 19 years old.")]
     [TestCase("Frank", 52, "Hello! My name is Frank and i am 52 years old.")]
-    [TestCase("grace", 1, "Hello! My name is Grace and i am 1 years old.")]
+    [TestCase("Grace", 1, "Hello! My name is Grace and i am 1 years old.")]
     [TestCase("Henry", 100, "Hello! My name is Henry and i am 100 years old.")]
+    [TestCase("nATaliA", 23, "Hello! My name is Natalia and i am 23 years old.")]
     public void Task0Test(string n, int a, string expected)
     {
         var result = Solver.IntroduceYourself(n, a);
