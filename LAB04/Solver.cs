@@ -122,12 +122,11 @@
         /// </example>
         public static string CalculateDiscountPrice(double price, double discountPercent)
         {
-            // 1. Вычисляем итоговую цену // Цена минус (цена умноженная на процент скидки, деленный на 100)
+            
             double finalPrice = price - (price * (discountPercent / 100.0));
             finalPrice = Math.Round(finalPrice, 2, MidpointRounding.AwayFromZero);
 
-            // 2. Возвращаем строку строго по образцу. 
-            // Обрати внимание на {finalPrice:F2} — это значит "вывести с 2 знаками после запятой".
+           
             return $"Цена: {price}, скидка: {discountPercent}%, итоговая цена: {finalPrice:F2}";
         }
        
@@ -345,31 +344,30 @@
         /// </example>
         public static string ArithmeticProgression(int first, int step, int n)
         {
-            // 1. Проверяем, можно ли построить прогрессию
-            //
+            
+            
             if (n <= 0 || step == 0) { return "Невозможно собрать прогрессию"; }
-            // Переменные для хранения результата и суммы
+           
             string progressionStr = "";
             int sum = 0;
             int current = first;
 
-            // 2. Цикл для генерации n чисел
+            
             for (int i = 0; i < n; i++)
             {
-                // Добавляем текущее число к сумме
+               
                 sum += current;
 
-                // Добавляем число в строку (через пробел)
+                
                 progressionStr += current + " ";
 
-                // Вычисляем следующее число прогрессии
+                
                 current += step;
             }
 
-            // 3. Убираем лишний пробел в конце строки (Trim)
             progressionStr = progressionStr.Trim();
 
-            // 4. Возвращаем готовую строку
+            
             return $"Прогрессия: {progressionStr}, сумма = {sum}";
         }
 
@@ -465,25 +463,24 @@
         /// </example>
         public static string MatrixDiagonalMax(int[,] matrix)
         {
-            // 1. Получаем количество строк и столбцов
+            
             int rows = matrix.GetLength(0); int cols = matrix.GetLength(1);
-            // 2. Проверяем, что матрица квадратная
+           
             if (rows != cols)
             {
                 return "Максимальный элемент главной диагонали = 0";
             }
 
-            // 3. Если матрица пустая, возвращаем 0
+            
             if (rows == 0)
             {
                 return "Максимальный элемент главной диагонали = 0";
             }
 
-            // 4. Берем первый элемент диагонали как временный максимум
+           
             int max = matrix[0, 0];
 
-            // 5. Проходим по всей главной диагонали
-            // Главная диагональ — это где индекс строки равен индексу столбца (matrix[i, i])
+           
             for (int i = 1; i < rows; i++)
             {
                 if (matrix[i, i] > max)
@@ -492,7 +489,7 @@
                 }
             }
 
-            // 6. Возвращаем результат в нужном формате
+            
             return $"Максимальный элемент главной диагонали = {max}";
         }
     }
