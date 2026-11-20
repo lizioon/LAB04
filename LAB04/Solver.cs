@@ -23,7 +23,7 @@
         /// IntroduceYourself("Sarah", 13) → "Hello! My name is Sarah and i am 13 years old."
         /// </example>
         public static string IntroduceYourself(string name, int age)
-        { // Сначала делаем все буквы маленькими (чтобы убрать 'A' на конце), // а потом первую делаем заглавной.
+        { 
           string lowerName = name.ToLower();
           string formattedName = char.ToUpper(lowerName[0]) + lowerName.Substring(1);
             return $"Hello! My name is {formattedName} and i am {age} years old.";
